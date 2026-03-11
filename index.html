@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Second Chance Appliance &amp; Discount Furniture — Gary, IN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: oklch(0.25 0.08 255);
+      --navy-light: oklch(0.32 0.07 255);
+      --accent: oklch(0.62 0.19 33);
+      --accent-hover: oklch(0.55 0.19 33);
+      --bg: oklch(0.98 0 0);
+      --surface: oklch(1 0 0);
+      --border: oklch(0.91 0 0);
+      --text: oklch(0.15 0 0);
+      --muted: oklch(0.50 0 0);
+      --radius: 0.75rem;
+      --font: 'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 12px oklch(0 0 0 / 0.06);
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 1.5rem; height: 68px;
+    }
+    .nav-logo {
+      font-size: 1.35rem; font-weight: 800; color: var(--navy);
+      text-decoration: none; letter-spacing: -0.03em;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none; color: var(--muted);
+      font-size: 0.9rem; font-weight: 500;
+      transition: color 150ms;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--accent); color: white;
+      border: none; border-radius: 0.5rem;
+      padding: 0.75rem 1.75rem; font-size: 1rem; font-weight: 600;
+      cursor: pointer; text-decoration: none;
+      transition: background 150ms, transform 100ms;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .nav-cta:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; color: var(--text); }
+
+    /* HERO */
+    .hero {
+      background: var(--navy);
+      min-height: 580px;
+      display: flex; align-items: center;
+      overflow: hidden; position: relative;
+    }
+    .hero::after {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, oklch(0.62 0.19 33 / 0.15) 0%, transparent 60%);
+    }
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto; padding: 5rem 1.5rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+      position: relative; z-index: 1; width: 100%;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: oklch(1 0 0 / 0.08); border: 1px solid oklch(1 0 0 / 0.15);
+      color: oklch(0.85 0.05 33); border-radius: 2rem;
+      padding: 0.35rem 0.9rem; font-size: 0.8rem; font-weight: 600;
+      margin-bottom: 1.5rem; width: fit-content;
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 800;
+      color: white; line-height: 1.12; letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 em { color: var(--accent); font-style: normal; }
+    .hero p {
+      color: oklch(0.75 0 0); font-size: 1.05rem; line-height: 1.7;
+      margin-bottom: 2.25rem; max-width: 480px;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--accent); color: white;
+      padding: 0.85rem 2rem; border-radius: 0.6rem;
+      font-size: 0.95rem; font-weight: 700; text-decoration: none;
+      transition: background 150ms, transform 100ms;
+    }
+    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent; color: white;
+      border: 1.5px solid oklch(1 0 0 / 0.3);
+      padding: 0.85rem 2rem; border-radius: 0.6rem;
+      font-size: 0.95rem; font-weight: 600; text-decoration: none;
+      transition: border-color 150ms, background 150ms;
+    }
+    .btn-outline:hover { border-color: white; background: oklch(1 0 0 / 0.06); }
+    .hero-stats {
+      display: flex; gap: 2.5rem; margin-top: 2.5rem;
+    }
+    .stat-item { color: white; }
+    .stat-num { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.03em; color: var(--accent); }
+    .stat-label { font-size: 0.8rem; color: oklch(0.65 0 0); margin-top: 0.1rem; }
+    .hero-img {
+      border-radius: 1.25rem;
+      overflow: hidden;
+      box-shadow: 0 25px 60px oklch(0 0 0 / 0.4);
+      aspect-ratio: 4/3;
+    }
+    .hero-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* CATEGORIES */
+    .categories { background: var(--surface); padding: 3rem 1.5rem; border-bottom: 1px solid var(--border); }
+    .categories-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800;
+      letter-spacing: -0.03em; color: var(--text); margin-bottom: 2.5rem;
+    }
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+    .cat-card {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 0.75rem; padding: 1.5rem 1rem;
+      background: var(--bg); border: 1.5px solid var(--border);
+      border-radius: var(--radius); text-decoration: none; color: var(--text);
+      transition: border-color 200ms, transform 200ms, box-shadow 200ms;
+      cursor: pointer;
+    }
+    .cat-card:hover {
+      border-color: var(--accent); transform: translateY(-3px);
+      box-shadow: 0 8px 24px oklch(0.62 0.19 33 / 0.12);
+    }
+    .cat-icon {
+      width: 52px; height: 52px; border-radius: 0.75rem;
+      background: oklch(0.62 0.19 33 / 0.1);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+    }
+    .cat-name { font-size: 0.82rem; font-weight: 600; text-align: center; }
+
+    /* PRODUCTS */
+    .products { padding: 5rem 1.5rem; }
+    .products-inner { max-width: 1200px; margin: 0 auto; }
+    .section-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem;
+    }
+    .view-all {
+      font-size: 0.88rem; font-weight: 600; color: var(--accent);
+      text-decoration: none; display: flex; align-items: center; gap: 0.25rem;
+    }
+    .view-all:hover { text-decoration: underline; }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .product-card {
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      transition: transform 200ms, box-shadow 200ms;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px oklch(0 0 0 / 0.1);
+    }
+    .product-img {
+      aspect-ratio: 4/3; overflow: hidden; background: var(--bg);
+      position: relative;
+    }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 300ms; }
+    .product-card:hover .product-img img { transform: scale(1.04); }
+    .product-badge {
+      position: absolute; top: 0.75rem; left: 0.75rem;
+      background: var(--accent); color: white;
+      font-size: 0.72rem; font-weight: 700; padding: 0.25rem 0.6rem;
+      border-radius: 0.35rem; text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .product-info { padding: 1.25rem; }
+    .product-brand { font-size: 0.75rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.35rem; }
+    .product-name { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.35; }
+    .product-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
+    .product-footer { display: flex; align-items: center; justify-content: space-between; }
+    .product-price { font-size: 1.25rem; font-weight: 800; color: var(--navy); }
+    .product-btn {
+      background: var(--navy); color: white;
+      border: none; border-radius: 0.5rem;
+      padding: 0.55rem 1rem; font-size: 0.82rem; font-weight: 600;
+      cursor: pointer; text-decoration: none;
+      transition: background 150ms;
+    }
+    .product-btn:hover { background: var(--navy-light); }
+
+    /* BRANDS */
+    .brands { background: var(--navy); padding: 3.5rem 1.5rem; }
+    .brands-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+    .brands h2 { color: oklch(0.7 0 0); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 2rem; }
+    .brand-logos { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 3rem; }
+    .brand-logo {
+      color: oklch(0.55 0 0); font-size: 1.1rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      transition: color 200ms;
+    }
+    .brand-logo:hover { color: white; }
+
+    /* WHY US */
+    .why { padding: 5rem 1.5rem; background: var(--bg); }
+    .why-inner { max-width: 1200px; margin: 0 auto; }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
+    .why-card {
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: var(--radius); padding: 2rem;
+      transition: border-color 200ms;
+    }
+    .why-card:hover { border-color: oklch(0.25 0.08 255 / 0.3); }
+    .why-icon {
+      width: 48px; height: 48px; border-radius: 0.65rem;
+      background: oklch(0.25 0.08 255 / 0.08);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--navy); margin-bottom: 1.25rem;
+    }
+    .why-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .why-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+
+    /* CONTACT */
+    .contact { background: var(--surface); padding: 5rem 1.5rem; border-top: 1px solid var(--border); }
+    .contact-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .contact h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.75rem; }
+    .contact p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 2rem; }
+    .contact-details { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-item { display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; }
+    .contact-item i { color: var(--accent); }
+    .map-wrap { border-radius: var(--radius); overflow: hidden; height: 280px; border: 1.5px solid var(--border); }
+    .map-wrap iframe { width: 100%; height: 100%; border: none; }
+
+    /* FOOTER */
+    footer { background: var(--navy); color: oklch(0.65 0 0); padding: 3rem 1.5rem 2rem; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 2.5rem; }
+    .footer-brand { font-size: 1.2rem; font-weight: 800; color: white; letter-spacing: -0.03em; margin-bottom: 0.75rem; }
+    .footer-brand span { color: var(--accent); }
+    .footer-desc { font-size: 0.85rem; line-height: 1.7; }
+    .footer-col h4 { color: white; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-col a { color: oklch(0.55 0 0); text-decoration: none; font-size: 0.85rem; transition: color 150ms; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom { border-top: 1px solid oklch(1 0 0 / 0.08); padding-top: 1.5rem; display: flex; justify-content: space-between; font-size: 0.8rem; flex-wrap: wrap; gap: 0.5rem; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-img { max-width: 520px; }
+      .contact-inner { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: block; }
+      .hero-inner { padding: 3.5rem 1.5rem; }
+      .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 2rem; }
+      .hero-btns { flex-direction: column; }
+      .product-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Second Chance<span>Appliance</span></a>
+    <ul class="nav-links">
+      <li><a href="#categories">Shop</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#brands">Brands</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="tel:+12199399980" class="nav-cta">
+      <i data-lucide="phone" style="width:15px;height:15px;"></i>
+      Call Us
+    </a>
+    <button class="hamburger" aria-label="Menu">
+      <i data-lucide="menu" style="width:24px;height:24px;"></i>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">
+        <i data-lucide="zap" style="width:12px;height:12px;"></i>
+        Appliances &amp; Discount Furniture — Gary, IN
+      </div>
+      <h1>Quality Appliances,<br /><em>Unbeatable</em> Prices</h1>
+      <p>Top brands, expert installation, and service you can count on. Shop appliances and discount furniture — all in one place in Gary, IN.</p>
+      <div class="hero-btns">
+        <a href="#products" class="btn-primary">Shop Now</a>
+        <a href="#contact" class="btn-outline">Get a Quote</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">500+</div>
+          <div class="stat-label">Products in Stock</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">20+</div>
+          <div class="stat-label">Top Brands</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">4.9★</div>
+          <div class="stat-label">Customer Rating</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop&auto=format" alt="Modern Kitchen with Appliances" />
+    </div>
+  </div>
+</section>
+
+<!-- PHONE BAR -->
+<div style="background: oklch(0.25 0.08 255); padding: 1rem 1.5rem; text-align: center;">
+  <a href="tel:+12199399980" style="color: white; font-size: 1.5rem; font-weight: 800; text-decoration: none; font-family: 'Inter', sans-serif; letter-spacing: -0.02em;">
+    📞 Call Us: (219) 939-9980
+  </a>
+  <span style="color: oklch(0.75 0 0); font-size: 0.85rem; margin-left: 1.5rem;">Mon–Fri 9am–6pm | Sat 9am–4pm | Sun 9am–2pm</span>
+</div>
+
+
+<!-- CATEGORIES -->
+<section class="categories" id="categories">
+  <div class="categories-inner">
+    <div class="section-label">Browse By Category</div>
+    <div class="section-title">Find What You Need</div>
+    <div class="cat-grid">
+      <a class="cat-card" href="#">
+        <div class="cat-icon"><i data-lucide="refrigerator" style="width:24px;height:24px;"></i></div>
+        <span class="cat-name">Refrigerators</span>
+      </a>
+      <a class="cat-card" href="#">
+        <div class="cat-icon"><i data-lucide="wind" style="width:24px;height:24px;"></i></div>
+        <span class="cat-name">Washers</span>
+      </a>
+      <a class="cat-card" href="#">
+        <div class="cat-icon"><i data-lucide="flame" style="width:24px;height:24px;"></i></div>
+        <span class="cat-name">Ranges & Ovens</span>
+      </a>
+      <a class="cat-card" href="#">
+        <div class="cat-icon"><i data-lucide="droplets" style="width:24px;height:24px;"></i></div>
+        <span class="cat-name">Dishwashers</span>
+      </a>
+      <a class="cat-card" href="#">
+        <div class="cat-icon"><i data-lucide="microwave" style="width:24px;height:24px;"></i></div>
+        <span class="cat-name">Microwaves</span>
+      </a>
+      <a class="cat-card" href="#">
+        <div class="cat-icon"><i data-lucide="thermometer" style="width:24px;height:24px;"></i></div>
+        <span class="cat-name">Air Treatment</span>
+      </a>
+      <a class="cat-card" href="#">
+        <div class="cat-icon"><i data-lucide="coffee" style="width:24px;height:24px;"></i></div>
+        <span class="cat-name">Small Appliances</span>
+      </a>
+      <a class="cat-card" href="#">
+        <div class="cat-icon"><i data-lucide="package" style="width:24px;height:24px;"></i></div>
+        <span class="cat-name">Bundles & Deals</span>
+      </a>
+      <a class="cat-card" href="#">
+        <div class="cat-icon"><i data-lucide="sofa" style="width:24px;height:24px;"></i></div>
+        <span class="cat-name">Discount Furniture</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="products-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-label">Featured Products</div>
+        <div class="section-title">Top Sellers This Week</div>
+      </div>
+      <a href="#" class="view-all">View All Products <i data-lucide="arrow-right" style="width:14px;height:14px;"></i></a>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?w=600&h=450&fit=crop&auto=format" alt="French Door Refrigerator" />
+          <span class="product-badge">Best Seller</span>
+        </div>
+        <div class="product-info">
+          <div class="product-brand">Samsung</div>
+          <div class="product-name">28 cu. ft. French Door Refrigerator</div>
+          <div class="product-desc">Smart cooling, dual ice maker, and Wi-Fi connectivity. Stainless steel finish.</div>
+          <div class="product-footer">
+            <span class="product-price">$1,299</span>
+            <a href="#contact" class="product-btn">Get Quote</a>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=600&h=450&fit=crop&auto=format" alt="Front Load Washer" />
+          <span class="product-badge" style="background: var(--navy);">New Arrival</span>
+        </div>
+        <div class="product-info">
+          <div class="product-brand">LG</div>
+          <div class="product-name">5.0 cu. ft. Front Load Washer</div>
+          <div class="product-desc">TurboWash 360, steam cleaning, and ThinQ Wi-Fi app control built in.</div>
+          <div class="product-footer">
+            <span class="product-price">$899</span>
+            <a href="#contact" class="product-btn">Get Quote</a>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=600&h=450&fit=crop&auto=format" alt="Gas Range" />
+          <span class="product-badge" style="background: oklch(0.5 0.18 145);">In Stock</span>
+        </div>
+        <div class="product-info">
+          <div class="product-brand">GE Profile</div>
+          <div class="product-name">30" Freestanding Gas Range</div>
+          <div class="product-desc">5 sealed burners, self-cleaning convection oven, cast iron grates.</div>
+          <div class="product-footer">
+            <span class="product-price">$1,049</span>
+            <a href="#contact" class="product-btn">Get Quote</a>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=600&h=450&fit=crop&auto=format" alt="Dishwasher" />
+        </div>
+        <div class="product-info">
+          <div class="product-brand">Bosch</div>
+          <div class="product-name">800 Series Dishwasher</div>
+          <div class="product-desc">CrystalDry technology, 44 dBA ultra-quiet, flexible 3rd rack included.</div>
+          <div class="product-footer">
+            <span class="product-price">$1,149</span>
+            <a href="#contact" class="product-btn">Get Quote</a>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&h=450&fit=crop&auto=format" alt="Dryer" />
+        </div>
+        <div class="product-info">
+          <div class="product-brand">Whirlpool</div>
+          <div class="product-name">7.4 cu. ft. Electric Dryer</div>
+          <div class="product-desc">Advanced moisture sensing, wrinkle shield, steam refresh option.</div>
+          <div class="product-footer">
+            <span class="product-price">$749</span>
+            <a href="#contact" class="product-btn">Get Quote</a>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=450&fit=crop&auto=format" alt="Built-in Microwave" />
+          <span class="product-badge">Sale</span>
+        </div>
+        <div class="product-info">
+          <div class="product-brand">KitchenAid</div>
+          <div class="product-name">Over-the-Range Microwave 2.0 cu. ft.</div>
+          <div class="product-desc">Sensor cooking, 400 CFM ventilation, easy-clean interior. Stainless.</div>
+          <div class="product-footer">
+            <span class="product-price">$499</span>
+            <a href="#contact" class="product-btn">Get Quote</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<section class="brands" id="brands">
+  <div class="brands-inner">
+    <h2>Authorized Dealer For Top Brands</h2>
+    <div class="brand-logos">
+      <div class="brand-logo">Samsung</div>
+      <div class="brand-logo">LG</div>
+      <div class="brand-logo">GE Profile</div>
+      <div class="brand-logo">Bosch</div>
+      <div class="brand-logo">Whirlpool</div>
+      <div class="brand-logo">KitchenAid</div>
+      <div class="brand-logo">Maytag</div>
+      <div class="brand-logo">Frigidaire</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why">
+  <div class="why-inner">
+    <div class="section-label">Why Choose Us</div>
+    <div class="section-title">More Than Just a Store</div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon"><i data-lucide="truck" style="width:22px;height:22px;"></i></div>
+        <h3>Free Delivery & Setup</h3>
+        <p>We deliver, install, and haul away your old appliance on orders over $499. No hidden fees, no third-party contractors.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i data-lucide="shield-check" style="width:22px;height:22px;"></i></div>
+        <h3>Price Match Guarantee</h3>
+        <p>Find it cheaper elsewhere? We'll match it. We're committed to giving you the best deal in the area, guaranteed.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i data-lucide="wrench" style="width:22px;height:22px;"></i></div>
+        <h3>Expert Service & Repair</h3>
+        <p>Our factory-certified technicians service all major brands. Fast appointments, fair pricing, backed by warranty.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i data-lucide="credit-card" style="width:22px;height:22px;"></i></div>
+        <h3>Flexible Financing</h3>
+        <p>0% APR financing available for qualified buyers. Get the appliances you need today and pay on your terms.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i data-lucide="headphones" style="width:22px;height:22px;"></i></div>
+        <h3>Local, Trusted Service</h3>
+        <p>Family-owned and operated since 2005. Real people answering your calls, not a call center. Come see us in store.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i data-lucide="recycle" style="width:22px;height:22px;"></i></div>
+        <h3>Old Appliance Haul-Away</h3>
+        <p>We remove and responsibly dispose of your old unit at no extra charge when you purchase a new one from us.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div>
+      <div class="section-label">Get In Touch</div>
+      <h2>Visit Our Showroom or Call Today</h2>
+      <p>Our knowledgeable staff is ready to help you find the perfect appliance. Stop in, call, or fill out our quote form.</p>
+      <div class="contact-details">
+        <div class="contact-item">
+          <i data-lucide="map-pin" style="width:18px;height:18px;color:var(--accent);"></i>
+          <span>8000 Melton Rd, Suite 16, Gary, IN 46403</span>
+        </div>
+        <div class="contact-item">
+          <i data-lucide="phone" style="width:18px;height:18px;color:var(--accent);"></i>
+          <a href="tel:+12199399980" style="text-decoration:none;color:inherit;">(219) 939-9980</a>
+        </div>
+        <div class="contact-item">
+          <i data-lucide="clock" style="width:18px;height:18px;color:var(--accent);"></i>
+          <span>Mon–Thu 9am–6pm &nbsp;|&nbsp; Fri 9am–5pm &nbsp;|&nbsp; Sat 9am–4pm &nbsp;|&nbsp; Sun 9am–2pm</span>
+        </div>
+        <div class="contact-item">
+          <i data-lucide="mail" style="width:18px;height:18px;color:var(--accent);"></i>
+          <a href="mailto:info@secondchanceappliance.com" style="text-decoration:none;color:inherit;">info@secondchanceappliance.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="map-wrap">
+      <iframe
+        src="https://maps.google.com/maps?q=8000+Melton+Rd+Suite+16+Gary+IN+46403&output=embed"
+        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="Appliance Depot Location">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">Second Chance<span>Appliance</span></div>
+        <p class="footer-desc">Your local appliance experts since 2005. We carry top brands, offer professional installation, and stand behind every sale.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#">Refrigerators</a></li>
+          <li><a href="#">Washers & Dryers</a></li>
+          <li><a href="#">Ranges & Ovens</a></li>
+          <li><a href="#">Dishwashers</a></li>
+          <li><a href="#">Deals & Bundles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Financing</a></li>
+          <li><a href="#">Delivery & Install</a></li>
+          <li><a href="#">Service & Repair</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 Second Chance Appliance &amp; Discount Furniture. All rights reserved.</span>
+      <span>Built by <a href="https://cornerdigitalgroup.com" style="color:var(--accent);text-decoration:none;">Corner Digital Group</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>
